@@ -16,12 +16,17 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingStep {
   const _OnboardingStep({
-    required this.lottieAsset,
+    this.lottieAsset,
+    this.imageAsset,
     required this.title,
     required this.description,
-  });
+  }) : assert(
+          lottieAsset != null || imageAsset != null,
+          'Provide lottieAsset or imageAsset',
+        );
 
-  final String lottieAsset;
+  final String? lottieAsset;
+  final String? imageAsset;
   final String title;
   final String description;
 }
@@ -29,22 +34,22 @@ class _OnboardingStep {
 class _OnboardingPageState extends State<OnboardingPage> {
   static const _steps = <_OnboardingStep>[
     _OnboardingStep(
-      lottieAsset: 'assets/images/MobileDictionary.json',
+      lottieAsset: 'assets/images/onBoarding1.json',
       title: 'مرحبًا بك في لَمح',
       description:
-          'رحلة تعليمية سلسة تجمع بين الصوت والمعرفة في تجربة زجاجية أنيقة.',
+          'منصة عربية للتعلّم بالصوت والقراءة بمحتوى منظم يرافقك خطوة بخطوة نحو المعرفة.',
     ),
     _OnboardingStep(
-      lottieAsset: 'assets/images/OnlineConference.json',
+      imageAsset: 'assets/images/onBoarding2.jpg',
       title: 'ركّز على أهدافك',
       description:
-          'تابع القراء وقوائم التشغيل بما يناسب وتيرتك، بلا تشتيت.',
+          'تابع الدروس والقراء واستمع لمحتوى يناسب وقتك مع تقدّم واضح بلا تشتيت.',
     ),
     _OnboardingStep(
-      lottieAsset: 'assets/images/TaskManagement.json',
+      imageAsset: 'assets/images/onBoarding3.jpg',
       title: 'ابدأ مع لَمح',
       description:
-          'كل ما تحتاجه في مكان واحد — ابدأ الآن واستكشف عالمك التعليمي.',
+          'كل ما تحتاجه في مكان واحد: تعلّم، استماع، ومتابعة. ابدأ رحلتك الآن.',
     ),
   ];
 
@@ -80,9 +85,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
     final textTheme = Theme.of(context).textTheme;
 
     return GlassScaffold(
-      statusBarStyle: colors.glassStatusBarStyle,
+      statusBarStyle: GlassStatusBarStyle.dark,
       contentAwareBrightness: true,
-      background: ColoredBox(color: colors.background),
+      background: const ColoredBox(color: Colors.white),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -149,29 +154,39 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       children: [
                         Expanded(
                           child: Center(
-                            child: Lottie.asset(
-                              page.lottieAsset,
-                              fit: BoxFit.contain,
-                              repeat: true,
-                            ),
+                            child: page.imageAsset != null
+                                ? Image.asset(
+                                    page.imageAsset!,
+                                    fit: BoxFit.contain,
+                                  )
+                                : Lottie.asset(
+                                    page.lottieAsset!,
+                                    fit: BoxFit.contain,
+                                    repeat: true,
+                                  ),
                           ),
                         ),
                         const SizedBox(height: AppSpacing.spacingLG),
                         Text(
                           page.title,
-                          style: textTheme.headlineSmall?.copyWith(
+                          style: textTheme.headlineMedium?.copyWith(
                             color: colors.onGlass,
-                            fontWeight: FontWeight.w700,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                            height: 1.3,
+                            letterSpacing: -0.3,
                             decoration: TextDecoration.none,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        const SizedBox(height: AppSpacing.spacingLG),
+                        const SizedBox(height: AppSpacing.spacingMD),
                         Text(
                           page.description,
                           style: textTheme.bodyLarge?.copyWith(
                             color: colors.onGlassMuted,
-                            height: 1.55,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            height: 1.65,
                             decoration: TextDecoration.none,
                           ),
                           textAlign: TextAlign.center,

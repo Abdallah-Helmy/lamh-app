@@ -54,12 +54,7 @@ class GlassLoginButton extends StatelessWidget {
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.arrow_back_rounded,
-                  size: 20,
-                  color: Colors.white,
-                ),
-                const SizedBox(width: 9),
+      
                 Text(
                   label,
                   style: textTheme.titleMedium?.copyWith(
@@ -67,6 +62,12 @@ class GlassLoginButton extends StatelessWidget {
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.none,
                   ),
+                ),
+                const SizedBox(width: 9),
+                    const Icon(
+                  Icons.arrow_forward_rounded,
+                  size: 20,
+                  color: Colors.white,
                 ),
               ],
             ),

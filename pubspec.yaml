@@ -29,6 +29,11 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   liquid_glass_widgets: ^1.6.1
+  bloc: ^9.2.1
+  flutter_bloc: ^9.1.1
+  dio: ^5.11.1
+  toastification: ^3.2.0
+
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -63,9 +68,9 @@ flutter:
   assets:
     - assets/images/logo1.png
     - assets/images/login_bg.png
-    - assets/images/MobileDictionary.json
-    - assets/images/OnlineConference.json
-    - assets/images/TaskManagement.json
+    - assets/images/onBoarding1.json
+    - assets/images/onBoarding2.jpg
+    - assets/images/onBoarding3.jpg
     - assets/images/icons/
 
   fonts:
